@@ -3,16 +3,17 @@
 const BroccoliDebug = require('broccoli-debug');
 const path = require('path');
 const Plugin = require('./lib/plugin');
+const pkg = require('./package');
 
-const debugTree = BroccoliDebug.buildDebugCallback(`some-awesome`);
+const debugTree = BroccoliDebug.buildDebugCallback(`ember-sfc`);
 
 
 module.exports = {
-  name: require('./package').name,
+  name: pkg.name,
 
   setupPreprocessorRegistry(type, registry) {
     registry.add('js', {
-      name: 'ember-sfc',
+      name: pkg.name,
       ext: 'ember',
       toTree: (tree) => {
         let input = debugTree(tree, 'input');
